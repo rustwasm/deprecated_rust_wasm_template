@@ -2,6 +2,8 @@
 
 # Rust 🦀 and WebAssembly 🕸 Template 🏗
 
+[![Build Status](https://travis-ci.org/rustwasm/rust_wasm_template.svg?branch=master)](https://travis-ci.org/rustwasm/rust_wasm_template)
+
 This is a template to jump-start your Rust and WebAssembly project and let you
 hit the ground running.
 
