@@ -1,7 +1,16 @@
 [package]
-name = "rust_wasm_template"
-version = "0.1.0"
 authors = ["Nick Fitzgerald <fitzgen@gmail.com>"]
+categories = ["wasm"]
+description = "My super awesome Rust and WebAssembly project!"
+license = "Apache-2.0/MIT"
+name = "rust_wasm_template"
+readme = "./README.md"
+repository = "https://github.com/rustwasm/rust_wasm_template"
+version = "0.1.0"
+
+[badges]
+# Change this to your project's GitHub repo!
+travis-ci = { repository = "rustwasm/rust_wasm_template" }
 
 [lib]
 crate-type = [
