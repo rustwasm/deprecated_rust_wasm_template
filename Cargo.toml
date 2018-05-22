@@ -20,3 +20,6 @@ wasm-bindgen = "0.2.10"
 
 # Optimize for small code size, rather than speed.
 opt-level = "s"
+
+# Always enable link-time optimizations to shrink binary sizes.
+lto = true
