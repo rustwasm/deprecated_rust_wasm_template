@@ -1,6 +1,7 @@
 /target
 **/*.rs.bk
 Cargo.lock
+.crates.toml
 
 # Local install of wasm-bindgen.
 bin/wasm-bindgen
