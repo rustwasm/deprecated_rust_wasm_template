@@ -1,6 +1,6 @@
 //! My awesome Rust and WebAssembly project!
 
-#![feature(proc_macro, wasm_custom_section)]
+#![feature(proc_macro, wasm_custom_section, wasm_import_module)]
 
 extern crate wasm_bindgen;
 
