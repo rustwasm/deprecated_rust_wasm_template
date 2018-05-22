@@ -12,9 +12,12 @@ hit the ground running.
 * [X] The latest `wasm-bindgen` so you can import JavaScript things into Rust
   and export Rust things to JavaScript.
 
+* [X] (Optionally) using `wee_alloc` as the global allocator, to help keep your
+  code size footprint small.
+
 * [X] Boilerplate to build, optimize, and post-process your `.wasm` binaries.
 
-* [X] Boilerplate for writing `#[test]`s and `#[bench]`es.
+* [X] Boilerplate for writing `#[test]`s and `#[bench]`es for the native target.
 
 * [X] Travis CI integration to make sure you don't break your tests or your
   WebAssembly builds.

@@ -20,6 +20,11 @@ To build the `.wasm` binary, run
 JOB=wasm ./ci/script.sh
 ```
 
+### Cargo Features
+
+* `wee_alloc`: Enable using [`wee_alloc`](https://github.com/rustwasm/wee_alloc)
+  as the global allocator. This trades allocation speed for smaller code size.
+
 ## Testing
 
 There are integration tests in the `tests/` directory, and unit tests in

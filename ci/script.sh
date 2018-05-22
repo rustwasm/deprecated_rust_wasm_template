@@ -39,10 +39,16 @@ function do_build {
 
 function do_test {
     header 'Testing'
+
     logged cargo \
-           cargo +nightly test
+           cargo +nightly test           --no-default-features
     logged cargo \
-           cargo +nightly test --release
+           cargo +nightly test --release --no-default-features
+
+    logged cargo \
+           cargo +nightly test           --features wee_alloc
+    logged cargo \
+           cargo +nightly test --release --features wee_alloc
 }
 
 function do_bench {
