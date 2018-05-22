@@ -1,35 +1,25 @@
 #!/usr/bin/env bash
 
-set -eux
+set -eu
 
 cd "$(dirname "$0")/.."
 
 function main {
     case "$JOB" in
         "build")
-            cargo +nightly build
-            cargo +nightly build --release
+            do_build
             ;;
 
         "test")
-            cargo +nightly test
-            cargo +nightly test --release
+            do_test
             ;;
 
         "bench")
-            cargo +nightly bench
+            do_bench
             ;;
 
         "wasm")
-            rustup update nightly
-            rustup target add wasm32-unknown-unknown --toolchain nightly
-
-            cargo +nightly build --release --target wasm32-unknown-unknown
-
-            ensure_wasm_bindgen_installed
-
-            ./bin/wasm-bindgen --out-dir . ./target/wasm32-unknown-unknown/release/*.wasm
-            wc -c *.wasm
+            do_wasm
             ;;
 
         *)
@@ -37,6 +27,71 @@ function main {
             exit 1
             ;;
     esac
+}
+
+function do_build {
+    header 'Building'
+    logged cargo \
+           cargo +nightly build
+    logged cargo \
+           cargo +nightly build --release
+}
+
+function do_test {
+    header 'Testing'
+    logged cargo \
+           cargo +nightly test
+    logged cargo \
+           cargo +nightly test --release
+}
+
+function do_bench {
+    header 'Benchmarking'
+    logged cargo \
+           cargo +nightly bench
+}
+
+function do_wasm {
+    header 'Updating rust nightly and installing the `wasm32-unknown-unknown` target.'
+
+    logged rustup \
+           rustup update nightly
+    logged rustup \
+           rustup target add wasm32-unknown-unknown --toolchain nightly
+
+    header 'Building for `wasm32-unknown-unknown` target.'
+    logged cargo \
+           cargo +nightly build \
+           --release \
+           --target wasm32-unknown-unknown
+
+    header 'Installing wasm-bindgen locally'
+    ensure_wasm_bindgen_installed
+
+    header 'Running wasm-bindgen'
+    local target_wasm_file=$(ls ./target/wasm32-unknown-unknown/release/*.wasm)
+    logged wasm-bindgen \
+           ./bin/wasm-bindgen \
+           --out-dir . \
+           "$target_wasm_file"
+
+    header 'Running wasm-opt'
+    local local_wasm_file=$(ls *.wasm)
+    if test -x "$(which wasm-opt | xargs)"; then
+        local tmp=$(mktemp)
+        logged wasm-opt \
+               wasm-opt -Oz -o "$tmp" "$local_wasm_file"
+        mv "$tmp" "$local_wasm_file"
+    else
+        echo 'Could not find a suitable `wasm-opt` on $PATH. Install'
+        echo '`wasm-opt` from the `binaryen` suite to produce smaller'
+        echo 'and faster `.wasm` binaries!'
+        echo
+        echo 'https://github.com/WebAssembly/binaryen'
+    fi
+
+    header 'Final `.wasm` Size'
+    wc -c "$local_wasm_file"
 }
 
 function get_wasm_bindgen_version {
@@ -54,13 +109,43 @@ function get_wasm_bindgen_version {
         | xargs
 }
 
+function header {
+    echo
+    echo '================================================================================'
+    for x in "$@"; do
+        echo "$x"
+    done
+    echo '--------------------------------------------------------------------------------'
+    echo
+}
+
 function ensure_wasm_bindgen_installed {
     local version=$(get_wasm_bindgen_version)
     local version_string="wasm-bindgen $version"
 
-    test -x ./bin/wasm-bindgen \
-        && test "$(./bin/wasm-bindgen --version | xargs)" == "$version_string" \
-            || cargo +nightly install -f wasm-bindgen-cli --version "$version" --root "$(pwd)"
+    if test -x ./bin/wasm-bindgen; then
+        if test "$(./bin/wasm-bindgen --version | xargs)" == "$version_string"; then
+            echo 'Correct version of wasm-bindgen already installed locally.'
+            return
+        fi
+
+        echo "Wrong version installed locally, updating to $version."
+    else
+        echo 'wasm-bindgen not installed locally, installing.'
+    fi
+
+    logged cargo \
+           cargo +nightly install -f wasm-bindgen-cli \
+           --version "$version" \
+           --root "$(pwd)"
+}
+
+function logged {
+    local prefix="$1"
+    shift
+    echo "Running '$@'"
+    "$@" > >(sed "s/^/$prefix: /") 2> >(sed "s/^/$prefix (stderr): /" >&2)
+    echo
 }
 
 main
