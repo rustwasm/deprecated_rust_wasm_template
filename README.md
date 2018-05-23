@@ -12,6 +12,8 @@ hit the ground running.
 * [X] The latest `wasm-bindgen` so you can import JavaScript things into Rust
   and export Rust things to JavaScript.
 
+* [X] Webpack bundling and dev-server integration.
+
 * [X] (Optionally) using `wee_alloc` as the global allocator, to help keep your
   code size footprint small.
 

@@ -2,6 +2,8 @@
 **/*.rs.bk
 Cargo.lock
 .crates.toml
+/node_modules
+package-lock.json
 
 # Local install of wasm-bindgen.
 bin/wasm-bindgen
