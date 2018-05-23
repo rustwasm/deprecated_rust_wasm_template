@@ -25,6 +25,9 @@ JOB=wasm ./ci/script.sh
 * `wee_alloc`: Enable using [`wee_alloc`](https://github.com/rustwasm/wee_alloc)
   as the global allocator. This trades allocation speed for smaller code size.
 
+* `console_error_panic_hook`: Enable better debugging of panics by printing
+  error messages in browser devtools with `console.error`.
+
 ## Testing
 
 There are integration tests in the `tests/` directory, and unit tests in

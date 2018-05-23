@@ -31,6 +31,26 @@ function main {
 
 function do_build {
     header 'Building'
+
+    # With no default features.
+    logged cargo \
+           cargo +nightly build           --no-default-features
+    logged cargo \
+           cargo +nightly build --release --no-default-features
+
+    # With just the `wee_alloc` feature.
+    logged cargo \
+           cargo +nightly build           --no-default-features --features wee_alloc
+    logged cargo \
+           cargo +nightly build --release --no-default-features --features wee_alloc
+
+    # With just the `console_error_panic_hook` feature.
+    logged cargo \
+           cargo +nightly build           --no-default-features --features console_error_panic_hook
+    logged cargo \
+           cargo +nightly build --release --no-default-features --features console_error_panic_hook
+
+    # With default features.
     logged cargo \
            cargo +nightly build
     logged cargo \
@@ -40,15 +60,29 @@ function do_build {
 function do_test {
     header 'Testing'
 
+    # With no default features.
     logged cargo \
            cargo +nightly test           --no-default-features
     logged cargo \
            cargo +nightly test --release --no-default-features
 
+    # With just the `wee_alloc` feature.
     logged cargo \
-           cargo +nightly test           --features wee_alloc
+           cargo +nightly test           --no-default-features --features wee_alloc
     logged cargo \
-           cargo +nightly test --release --features wee_alloc
+           cargo +nightly test --release --no-default-features --features wee_alloc
+
+    # With just the `console_error_panic_hook` feature.
+    logged cargo \
+           cargo +nightly test           --no-default-features --features console_error_panic_hook
+    logged cargo \
+           cargo +nightly test --release --no-default-features --features console_error_panic_hook
+
+    # With default features.
+    logged cargo \
+           cargo +nightly test
+    logged cargo \
+           cargo +nightly test --release
 }
 
 function do_bench {

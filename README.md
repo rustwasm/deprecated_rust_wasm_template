@@ -17,6 +17,8 @@ hit the ground running.
 * [X] (Optionally) using `wee_alloc` as the global allocator, to help keep your
   code size footprint small.
 
+* [X] Better debugging with panics forwarded to `console.error`.
+
 * [X] Boilerplate to build, optimize, and post-process your `.wasm` binaries.
 
 * [X] Boilerplate for writing `#[test]`s and `#[bench]`es for the native target.
