@@ -1,5 +1,22 @@
 # Contributing
 
+- [Code of Conduct](#code-of-conduct)
+- [Building](#building)
+  - [Native](#native)
+  - [Just the WebAssembly](#just-the-webassembly)
+  - [WebAssembly and JavaScript Bundle](#webassembly-and-javascript-bundle)
+  - [Cargo Features](#cargo-features)
+- [Serving Locally with Webpack](#serving-locally-with-webpack)
+- [Testing](#testing)
+- [Benchmarking](#benchmarking)
+- [Code Formatting](#code-formatting)
+
+## Code of Conduct
+
+We abide by the [Rust Code of
+Conduct](https://www.rust-lang.org/en-US/conduct.html) and ask that you do as
+well.
+
 ## Building
 
 ### Native
