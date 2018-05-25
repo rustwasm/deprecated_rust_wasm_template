@@ -1,6 +1,7 @@
 # Contributing
 
 - [Code of Conduct](#code-of-conduct)
+- [Overview](#overview)
 - [Building](#building)
   - [Native](#native)
   - [Just the WebAssembly](#just-the-webassembly)
@@ -16,6 +17,23 @@
 We abide by the [Rust Code of
 Conduct](https://www.rust-lang.org/en-US/conduct.html) and ask that you do as
 well.
+
+## Overview
+
+* `src/lib.rs`: Main entry point for the Rust crate.
+
+* `index.html`: Root HTML page that loads the JS and Wasm.
+
+* `index.js`: Root JS module, imports the `wasm-bindgen`-generated JS interface
+  to the Rust's Wasm, and transitively loads the Wasm itself.
+
+* `tests/`: Rust tests for native code.
+
+* `benches/`: Rust benchmarks for native code.
+
+* `webpack.config.js`: Webpack configuration.
+
+* `ci/`: Continuous integration scripts.
 
 ## Building
 
