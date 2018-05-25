@@ -2,7 +2,9 @@
 
 ## Building
 
-To build for the native target, run
+### Native
+
+To build the crate for the native target, run
 
 ```
 cargo build
@@ -14,10 +16,34 @@ or
 cargo build --release
 ```
 
-To build the `.wasm` binary, run
+### Just the WebAssembly
+
+To build just the `.wasm` binary, run
 
 ```
-JOB=wasm ./ci/script.sh
+cargo build --target wasm32-unknown-unknown
+```
+
+or
+
+```
+cargo build --target wasm32-unknown-unknown --release
+```
+
+### WebAssembly and JavaScript Bundle
+
+First, ensure that you've installed Webpack locally by running this command
+within the repository:
+
+```
+npm install
+```
+
+Then, to build the optimized WebAssembly, the `wasm-bindgen` JS interface to it,
+and the JavaScript bundle using the JS interface, run:
+
+```
+npm run build
 ```
 
 ### Cargo Features
@@ -27,6 +53,22 @@ JOB=wasm ./ci/script.sh
 
 * `console_error_panic_hook`: Enable better debugging of panics by printing
   error messages in browser devtools with `console.error`.
+
+## Serving Locally with Webpack
+
+Ensure that you have installed Webpack and its development server by running
+this command within the repository:
+
+```
+npm install
+```
+
+After that, you can start a local server on
+[http://localhost:8080](http://localhost:8080) by running this command:
+
+```
+npm run serve
+```
 
 ## Testing
 
