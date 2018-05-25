@@ -9,22 +9,34 @@ hit the ground running.
 
 ## 🛍 What's Inside?
 
-* [X] The latest `wasm-bindgen` so you can import JavaScript things into Rust
-  and export Rust things to JavaScript.
+* ✔ The latest [`wasm-bindgen`](https://github.com/rustwasm/wasm-bindgen) for
+  light and seamless bidirectional communication between Rust and
+  JavaScript. Import JavaScript things into Rust and export Rust things to
+  JavaScript.
 
-* [X] Webpack bundling and dev-server integration.
+* ✔ Boilerplate for builds, optimizing, and post-processing:
 
-* [X] (Optionally) using `wee_alloc` as the global allocator, to help keep your
-  code size footprint small.
+  * ✔ Generates the JS interface to your `.wasm` binary with the appropriate
+    `wasm-bindgen` invocation.
 
-* [X] Better debugging with panics forwarded to `console.error`.
+  * ✔ Runs [`wasm-opt`](https://github.com/WebAssembly/binaryen) to shrink the
+    `.wasm` binary's code size and also speed it up at runtime.
 
-* [X] Boilerplate to build, optimize, and post-process your `.wasm` binaries.
+  * ✔ Bundles your JS with [Webpack](https://webpack.js.org/).
 
-* [X] Boilerplate for writing `#[test]`s and `#[bench]`es for the native target.
+* ✔ Serve your `.wasm` and JS locally with [Webpack's
+  dev-server](https://github.com/webpack/webpack-dev-server/).
 
-* [X] Travis CI integration to make sure you don't break your tests or your
-  WebAssembly builds.
+* ✔ Better debugging with [Rust panics forwarded to
+  `console.error`](https://github.com/rustwasm/console_error_panic_hook).
+
+* ✔ Optionally use [`wee_alloc`](https://github.com/rustwasm/wee_alloc) as the
+  global allocator, to help keep your code size footprint small.
+
+* ✔ Boilerplate for writing `#[test]`s and `#[bench]`es for the native target.
+
+* ✔ Travis CI integration already set up. Make sure you never break your tests
+  or your WebAssembly builds.
 
 ## 🤸 Using this Template
 
@@ -49,3 +61,8 @@ git ls-files | xargs sed -i -e 's/rust_wasm_template/my_awesome_project/g'
 ```
 
 For more details on building and testing, see [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+### Enabling Travis CI
+
+The configuration is 100% configured, and all you need to do is [enable CI for
+the repo on your profile page](https://travis-ci.org/profile/).
