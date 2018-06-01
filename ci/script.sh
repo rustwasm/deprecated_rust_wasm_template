@@ -115,20 +115,7 @@ function do_wasm {
            --out-dir . \
            "$target_wasm_file"
 
-    header 'Running wasm-opt'
     local local_wasm_file=$(ls *.wasm)
-    if test -x "$(which wasm-opt | xargs)"; then
-        local tmp=$(mktemp)
-        logged wasm-opt \
-               wasm-opt -Oz -o "$tmp" "$local_wasm_file"
-        mv "$tmp" "$local_wasm_file"
-    else
-        echo 'Could not find a suitable `wasm-opt` on $PATH. Install'
-        echo '`wasm-opt` from the `binaryen` suite to produce smaller'
-        echo 'and faster `.wasm` binaries!'
-        echo
-        echo 'https://github.com/WebAssembly/binaryen'
-    fi
 
     header 'Final `.wasm` Size'
     wc -c "$local_wasm_file"
