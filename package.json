@@ -9,7 +9,6 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
-    "rust-plugin": "0.0.2",
-    "tempy": "^0.2.1"
+    "rust-plugin": "0.0.2"
   }
 }
