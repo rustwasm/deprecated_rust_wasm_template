@@ -115,7 +115,7 @@ function do_wasm {
            --out-dir . \
            "$target_wasm_file"
 
-    local local_wasm_file=$(ls *.wasm)
+    local local_wasm_file=$(ls dist/*.wasm)
 
     header 'Final `.wasm` Size'
     wc -c "$local_wasm_file"
