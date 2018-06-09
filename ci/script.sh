@@ -22,6 +22,10 @@ function main {
             do_wasm
             ;;
 
+        "final")
+            do_final
+            ;;
+
         *)
             echo "Error: unknown \$JOB = $JOB"
             exit 1
@@ -114,7 +118,9 @@ function do_wasm {
            ./bin/wasm-bindgen \
            --out-dir . \
            "$target_wasm_file"
+}
 
+function do_final {
     local local_wasm_file=$(ls dist/*.wasm)
 
     header 'Final `.wasm` Size'
