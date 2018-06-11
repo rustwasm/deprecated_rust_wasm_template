@@ -1,6 +1,9 @@
 {
   "scripts": {
-    "build": "JOB=wasm ./ci/script.sh && webpack",
+    "build": "npm run build:wasm && npm run build:webpack && npm run build:final",
+    "build:wasm": "JOB=wasm ./ci/script.sh",
+    "build:webpack": "webpack",
+    "build:final": "JOB=final ./ci/script.sh",
     "serve": "webpack-dev-server"
   },
   "devDependencies": {
