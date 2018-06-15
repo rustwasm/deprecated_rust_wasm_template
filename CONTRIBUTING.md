@@ -131,7 +131,7 @@ cargo bench
 Ensure that you have the `rustfmt-preview` component installed in `rustup`:
 
 ```
-rustup component add rustup-preview
+rustup component add rustfmt-preview
 ```
 
 To format all of the code in the crate, run
