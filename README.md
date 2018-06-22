@@ -50,14 +50,14 @@ Replace all the references to the `rustwasm` github organization with your
 github username or organization:
 
 ```
-git ls-files | xargs sed -i -e 's/rustwasm/my_github_username/g'
+git ls-files | xargs sed -i '' -e 's/rustwasm/my_github_username/g'
 ```
 
 Replace all the references to the `rust_wasm_template` and replace them with
 `my_awesome_project` or whatever your awesome project is called:
 
 ```
-git ls-files | xargs sed -i -e 's/rust_wasm_template/my_awesome_project/g'
+git ls-files | xargs sed -i '' -e 's/rust_wasm_template/my_awesome_project/g'
 ```
 
 For more details on building and testing, see [CONTRIBUTING.md](./CONTRIBUTING.md).
