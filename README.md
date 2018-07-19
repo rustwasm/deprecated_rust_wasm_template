@@ -40,29 +40,23 @@ hit the ground running.
 
 ## 🤸 Using this Template
 
-Clone the template repository:
+First, install `cargo-generate`:
 
 ```
-git clone https://github.com/rustwasm/rust_wasm_template.git my_awesome_project
+cargo install cargo-generate
 ```
 
-Replace all the references to the `rustwasm` github organization with your
-github username or organization:
+Second, generate a new project with this repository as a template:
 
 ```
-git ls-files | xargs sed -i '' -e 's/rustwasm/my_github_username/g'
+cargo-generate --git https://github.com/rustwasm/rust_wasm_template.git
 ```
 
-Replace all the references to the `rust_wasm_template` and replace them with
-`my_awesome_project` or whatever your awesome project is called:
-
-```
-git ls-files | xargs sed -i '' -e 's/rust_wasm_template/my_awesome_project/g'
-```
-
-For more details on building and testing, see [CONTRIBUTING.md](./CONTRIBUTING.md).
+Answer the prompts and then you should be good to go! Check out your new
+[`CONTRIBUTING.md`](./CONTRIBUTING.md) for details on building and project
+organization.
 
 ### Enabling Travis CI
 
-The configuration is 100% configured, and all you need to do is [enable CI for
-the repo on your profile page](https://travis-ci.org/profile/).
+The Travis CI configuration is 100% pre-configured, and all you need to do is
+[enable CI for the repo on your profile page](https://travis-ci.org/profile/).

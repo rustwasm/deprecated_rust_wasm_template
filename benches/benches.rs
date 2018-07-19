@@ -1,9 +1,9 @@
 #![feature(test)]
 
-extern crate rust_wasm_template;
+extern crate {{crate_name}};
 extern crate test;
 
-use rust_wasm_template::Counter;
+use {{crate_name}}::Counter;
 
 #[bench]
 fn benches_in_the_benches_dir_work(b: &mut test::Bencher) {
