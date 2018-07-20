@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 set -eu
-
 cd "$(dirname "$0")/.."
 
 function main {
+    ensure_template_filled_out
+
     case "$JOB" in
         "build")
             do_build
@@ -179,6 +180,26 @@ function logged {
     echo "Running '$@'"
     "$@" > >(sed "s/^/$prefix: /") 2> >(sed "s/^/$prefix (stderr): /" >&2)
     echo
+}
+
+function ensure_template_filled_out {
+    # If we are in the rustwasm/rust_wasm_template CI, then use `cargo-generate`
+    # to fill in our own template variables.
+    if grep -q '{{project-name}}' Cargo.toml; then
+        test -x "$HOME/.cargo/bin/cargo-install-update" \
+            || logged cargo \
+                      cargo install cargo-update
+        test -x "$HOME/.cargo/bin/cargo-generate" || \
+            logged cargo \
+                   cargo install cargo-generate
+        logged "cargo install-update" \
+               cargo install-update cargo-generate
+
+        rm -rf ./my_super_awesome
+        logged "cargo generate" \
+               cargo-generate --git "$(pwd)" --name my_super_awesome
+        cd ./my_super_awesome
+    fi
 }
 
 main

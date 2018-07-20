@@ -1,4 +1,4 @@
-import { Counter } from "./rust_wasm_template";
+import { Counter } from "./{{crate_name}}";
 
 const c = Counter.new();
 console.log(c.increment());

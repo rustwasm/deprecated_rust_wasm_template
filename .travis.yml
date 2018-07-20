@@ -6,10 +6,10 @@ rust:
 
 env:
   matrix:
+    - JOB="wasm"
     - JOB="build"
     - JOB="test"
     - JOB="bench"
-    - JOB="wasm"
 
 script:
   - ./ci/script.sh

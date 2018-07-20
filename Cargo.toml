@@ -1,11 +1,11 @@
 [package]
-authors = ["Nick Fitzgerald <fitzgen@gmail.com>"]
+authors = ["{{authors}}"]
 categories = ["wasm"]
 description = "My super awesome Rust and WebAssembly project!"
 license = "Apache-2.0/MIT"
-name = "rust_wasm_template"
+name = "{{project-name}}"
 readme = "./README.md"
-repository = "https://github.com/rustwasm/rust_wasm_template"
+repository = "https://github.com/rustwasm/{{project-name}}"
 version = "0.1.0"
 
 [badges]
@@ -22,7 +22,7 @@ crate-type = [
 
 [dependencies]
 cfg-if = "0.1.2"
-wasm-bindgen = "0.2.11"
+wasm-bindgen = "0.2.12"
 
 # The `console_error_panic_hook` crate provides better debugging of panics by
 # logging them with `console.error`. This is great for development, but requires
