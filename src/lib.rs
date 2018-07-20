@@ -1,7 +1,6 @@
 //! My awesome Rust and WebAssembly project!
 
 #![feature(use_extern_macros, wasm_custom_section, wasm_import_module)]
-#![cfg_attr(feature = "wee_alloc", feature(global_allocator))]
 
 #[macro_use]
 extern crate cfg_if;
