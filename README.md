@@ -1,5 +1,7 @@
 <meta charset="utf-8"/>
 
+**DEPRECATED**: Use rustwasm/wasm-pack-template for libraries and rustwasm/rust-webpack-template for webapps with webpack.
+
 # Rust 🦀 and WebAssembly 🕸 Template 🏗
 
 [![Build Status](https://travis-ci.org/rustwasm/rust_wasm_template.svg?branch=master)](https://travis-ci.org/rustwasm/rust_wasm_template)
